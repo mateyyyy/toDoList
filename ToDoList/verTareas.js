@@ -57,6 +57,7 @@ function verTarea(tareas)
         break;
     }
     if(cont>0){
+        console.log('');
         console.log('Desea ver los detalles de alguna?');
         op = prompt('Introduce el numero o 0 para volver : ');
         if(op>0)
@@ -66,7 +67,18 @@ function verTarea(tareas)
                 process.stdout.write('\x1B[2J\x1B[0f');                
                 console.log("   Tarea : " + tareas[op-1].titulo);
                 console.log("   Descripcion : " + tareas[op-1].descripcion);
-                console.log("   Estado : " + tareas[op-1].estado);
+                if(tareas[op-1].estado.toLowerCase()=='p'){
+                    console.log("   Estado : Pendiente");
+                }
+                if(tareas[op-1].estado.toLowerCase()=='e'){
+                    console.log("   Estado : En curso");
+                }
+                if(tareas[op-1].estado.toLowerCase()=='t'){
+                    console.log("   Estado : Terminada");
+                }
+                if(tareas[op-1].estado.toLowerCase()=='c'){
+                    console.log("   Estado : Cancelada");
+                }
                 console.log("   Creacion : " + tareas[op-1].creacion.getDate() + "/" 
                 + tareas[op-1].creacion.getMonth()
                 + '/' + tareas[op-1].creacion.getFullYear());
@@ -85,9 +97,9 @@ function verTarea(tareas)
                     if(temp!=''){
                         tareas[op-1].descripcion = temp;
                     }
-                    temp = prompt('Ingrese el estado [P]endiente, [E]n curso, [T]erminada : ');
+                    temp = prompt('Ingrese el estado [P]endiente, [E]n curso, [T]erminada, [C]ancelada: ');
                     if(temp!=''){
-                        while(temp.toLowerCase()!='p' && temp.toLowerCase()!='e' && temp.toLowerCase()!='t')
+                        while(temp.toLowerCase()!='p' && temp.toLowerCase()!='e' && temp.toLowerCase()!='t' && temp.toLowerCase()!='c')
                         {
                             console.log('Valor incorrecto, ingrese nuevamente....');
                             temp = prompt(`Ingrese el estado : [P]endiente, [E]n curso, [T]erminada : `);
